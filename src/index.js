@@ -4,14 +4,23 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-import { PrismicProvider } from '@prismicio/react';
-import { client } from './prismic';
+import { ApolloProvider, ApolloClient, InMemoryCache } from '@apollo/client';
+
+import { createPrismicLink } from 'apollo-link-prismic';
+
+const client = new ApolloClient({
+  link: createPrismicLink({
+  uri: `${process.env.REACT_APP_API_URL}`,
+  accessToken: `${process.env.REACT_APP_ACCESS_TOKEN}`
+}),
+cache: new InMemoryCache(),
+})
 
 ReactDOM.render(
   <React.StrictMode>
-    <PrismicProvider client={client}>
+    <ApolloProvider client={client}>
       <App />
-    </PrismicProvider>
+    </ApolloProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );
