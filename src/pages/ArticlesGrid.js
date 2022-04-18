@@ -11,10 +11,10 @@ function ArticlesGrid() {
   if (error) return `Error! ${error.message}`;
 
   return (
-    <Link to="/:articleUid">
-      <div>
-        {data.allArticles.edges.map((article) => (
-          <div key={article.node._meta.id}>
+    <div>
+      {data.allArticles.edges.map((article) => (
+        <div key={article.node._meta.id}>
+          <Link to={article.node._meta.uid}>
             <img
               src={article.node.feature_image.url}
               alt={article.node.feature_image.alt}
@@ -39,10 +39,10 @@ function ArticlesGrid() {
                   return '';
                 })}
             </div>
-          </div>
-        ))}
-      </div>
-    </Link>
+          </Link>
+        </div>
+      ))}
+    </div>
   );
 }
 
