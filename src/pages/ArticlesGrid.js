@@ -14,7 +14,7 @@ function ArticlesGrid() {
     <div>
       {data.allArticles.edges.map((article) => (
         <div key={article.node._meta.id}>
-          <Link to={article.node._meta.uid}>
+          <Link to='/:articleUid'>{/* {article.node._meta.uid} */}
             <img
               src={article.node.feature_image.url}
               alt={article.node.feature_image.alt}
