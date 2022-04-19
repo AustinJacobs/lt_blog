@@ -6,14 +6,14 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 function App() {
   return (
     <Router>
-      <Switch>
-        <Route path='/:articleUid'>
-          <ArticleDetail />
-        </Route>
-        <Route path='/'>
-          <ArticlesGrid />
-        </Route>
-      </Switch>
+        <Switch>
+          <Route exact path='/'>
+            <ArticlesGrid />
+          </Route>
+          <Route path='/:articleUid'>
+            <ArticleDetail />
+          </Route>
+        </Switch>
     </Router>
   );
 }
