@@ -29,7 +29,7 @@ export const htmlSerializer = function (type, element, content, children, key) {
         targetAttr,
         relAttr
       );
-      return React.createElement(propsWithUniqueKey(props, key), children);
+      return React.createElement('a', propsWithUniqueKey(props, key), children);
 
     default:
       return null;

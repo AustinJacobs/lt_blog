@@ -38,7 +38,7 @@ function ArticleDetail() {
       </h3>
       <div>
         {data.article.body
-          .find((index) => index.type === 'inline_text')
+          .filter((index) => index.type === 'inline_text')
           .map((content, index) => {
             return (
               <RichText
@@ -48,7 +48,6 @@ function ArticleDetail() {
               />
             );
           })}
-        ;
       </div>
       <button onClick={() => history.goBack()}>Back</button>
     </div>
