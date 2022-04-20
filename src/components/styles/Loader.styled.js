@@ -8,7 +8,7 @@ export const Loader = styled.div`
   justify-items: center;
   align-items: center;
   background-color: ${({ theme }) => theme.colors.ltiRed};
-  font-size: 8em;
+  font-size: 4em;
   color: ${({ theme }) => theme.colors.white};
 `;
 

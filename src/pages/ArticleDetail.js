@@ -7,7 +7,9 @@ import { useHistory } from 'react-router-dom';
 import { useEffect } from 'react';
 import { htmlSerializer } from '../prismic-config';
 import { Loader } from '../components/styles/Loader.styled';
-import { DetailContainer } from '../components/styles/DetailContainer.styled';
+import { DetailImageContainer } from '../components/styles/DetailImageContainer.styled';
+import { ArticleDetailBodyContainer } from '../components/styles/ArticleDetailBodyContainer.styled';
+import { Button } from '../components/styles/Button.styled';
 
 function ArticleDetail() {
   useEffect(() => {
@@ -28,16 +30,17 @@ function ArticleDetail() {
   console.log(data.article.body)
 
   return (
-    <DetailContainer>
+    <DetailImageContainer>
       <img
         src={data.article.feature_image.url}
         alt={data.article.feature_image.alt}
       />
+      <ArticleDetailBodyContainer>
         <h1>{data.article.title[0].text}</h1>
-        <h3>
+        <span>
           Published on{' '}
           {format(new Date(data.article.published_at), 'MMM dd, yyyy')}
-        </h3>
+        </span>
         <div>
           {data.article.body
             .filter((index) => index.type === 'inline_text')
@@ -51,8 +54,9 @@ function ArticleDetail() {
               );
             })}
         </div>
-        <button onClick={() => history.goBack()}>Back</button>
-    </DetailContainer>
+        <Button onClick={() => history.goBack()}>Back</Button>
+      </ArticleDetailBodyContainer>
+    </DetailImageContainer>
   );
 }
 
