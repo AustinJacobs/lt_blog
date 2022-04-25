@@ -61,28 +61,4 @@ export const ArticleDetailBodyContainer = styled.div`
   h6 {
     margin: 0;
   }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
-    h1:nth-of-type(1) {
-      font-size: 2em;
-    }
-
-    h3 {
-      font-size: 1.5em;
-    }
-
-    h4 {
-      font-size: 1;
-    }
-
-    padding: 1em 4em 1em 4em;
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
-    h1:nth-of-type(1) {
-      font-size: 1.75em;
-    }
-
-    padding: 1em 3em 1em 3em;
-  }
 `;

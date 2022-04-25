@@ -27,20 +27,4 @@ export const Card = styled.div`
     text-decoration: none;
     color: black;
   }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.medium}) {
-    width: 400px;
-
-    img {
-      width: 400px;
-    }
-  }
-
-  @media (max-width: ${({ theme }) => theme.breakpoints.small}) {
-    width: 350px;
-
-    img {
-      width: 350px;
-    }
-  };
 `;

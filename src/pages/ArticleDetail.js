@@ -10,6 +10,8 @@ import { Loader } from '../components/styles/Loader.styled';
 import { DetailImageContainer } from '../components/styles/DetailImageContainer.styled';
 import { ArticleDetailBodyContainer } from '../components/styles/ArticleDetailBodyContainer.styled';
 import { Button } from '../components/styles/Button.styled';
+import Heading from '../components/styles/Heading';
+import Text from '../components/styles/Text';
 
 function ArticleDetail() {
   useEffect(() => {
@@ -36,11 +38,11 @@ function ArticleDetail() {
         alt={data.article.feature_image.alt}
       />
       <ArticleDetailBodyContainer>
-        <h1>{data.article.title[0].text}</h1>
-        <span>
+        <Heading level={1}>{data.article.title[0].text}</Heading>
+        <Text variant="span">
           Published on{' '}
           {format(new Date(data.article.published_at), 'MMM dd, yyyy')}
-        </span>
+        </Text>
         <div>
           {data.article.body
             .filter((index) => index.type === 'inline_text')
