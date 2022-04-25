@@ -4,8 +4,7 @@ import { GET_POSTS } from '../GraphQL/Queries';
 import { format } from 'date-fns';
 import { Link } from 'react-router-dom';
 import { Card } from '../components/styles/Card.styled';
-import { CardDetails } from '../components/styles/CardDetails.styled';
-import { Loader } from '../components/styles/Loader.styled';
+import Loader from '../components/styles/Loader.styled';
 import Box from '../components/styles/Box';
 import Heading from '../components/styles/Heading';
 import Text from '../components/styles/Text';
@@ -26,7 +25,6 @@ function ArticlesGrid() {
               src={article.node.feature_image.url}
               alt={article.node.feature_image.alt}
             />
-            <CardDetails>
               <Heading level={1} fontWeight='normal'>
                 {article.node.title[0].text}
               </Heading>
@@ -49,7 +47,6 @@ function ArticlesGrid() {
                     return '';
                   })}
               </Box>
-            </CardDetails>
           </Link>
         </Card>
       ))}

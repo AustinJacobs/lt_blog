@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Button = styled.button`
+const Button = styled.button`
   background-color: ${({ theme }) => theme.colors.ltiBlue};
   width: 100px;
   height: 40px;
@@ -9,3 +9,5 @@ export const Button = styled.button`
   color: white;
   font-size: 1em;
 `;
+
+export default Button;

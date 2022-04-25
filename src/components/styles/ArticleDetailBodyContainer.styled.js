@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const ArticleDetailBodyContainer = styled.div`
+const ArticleDetailBodyContainer = styled.div`
   background-color: ${({ theme }) => theme.colors.white};
   margin: 0 auto;
   padding: 1em 6em 1em 6em;
@@ -47,3 +47,5 @@ export const ArticleDetailBodyContainer = styled.div`
     }
   }
 `;
+
+export default ArticleDetailBodyContainer;

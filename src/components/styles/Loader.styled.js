@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Loader = styled.div`
+const Loader = styled.div`
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -12,3 +12,4 @@ export const Loader = styled.div`
   color: ${({ theme }) => theme.colors.white};
 `;
 
+export default Loader;

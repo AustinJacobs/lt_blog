@@ -7,7 +7,8 @@ export const Card = styled.div`
   border: 2px solid ${({ theme }) => theme.colors.lightBlue};
   border-radius: 5px;
   justify-self: center;
-  margin-bottom: 20px;
+  margin: 1em 0 1em 0;
+  padding: 1em;
 
   img {
     width: 450px;
@@ -24,6 +25,18 @@ export const Card = styled.div`
   a {
     text-decoration: none;
     color: black;
+  }
+
+  h1 {
+    font-size: 22px;
+    margin: 0;
+    margin-top: 5px;
+  }
+
+  h3 {
+    color: ${({ theme }) => theme.colors.ltiRed};
+    font-size: 16px;
+    margin-top: 2px;
   }
 
   @media only screen and (max-width: ${({ theme }) => theme.breakpoints[1]}) {
