@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 
 export const Card = styled.div`
-  display: grid;
-  grid-template-columns: 1fr;
   background-color: ${({ theme }) => theme.colors.white};
   width: 450px;
   max-width: 100%;
@@ -26,5 +24,13 @@ export const Card = styled.div`
   a {
     text-decoration: none;
     color: black;
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints[1]}) {
+    width: 400px;
+  }
+
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints[0]}) {
+    width: 350px;
   }
 `;

@@ -28,13 +28,15 @@ const fontSizes = [
   16, 18, 20, 24, 32, 48, 64
 ]
 
+const breakpoints = ['890px', '1400px'];
+
 shadows.boxShadowBtn = shadows[0];
 shadows.boxShadowGrid = shadows[1];
 
 export const theme = {
   colors,
   shadows,
-  // breakpoints,
+  breakpoints,
   space,
   fontSizes
 };
