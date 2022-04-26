@@ -23,6 +23,7 @@ const HeadingBase = ({ level, as: Component = `h${level}`, ...props }) => (
 const Heading = styled(HeadingBase)(
   {
     margin: 0,
+    padding: 0,
   },
   variant({
     variants,
@@ -34,6 +35,7 @@ const Heading = styled(HeadingBase)(
 
 Heading.propTypes = {
   ...propTypes.space,
+  ...propTypes.typography,
   level: PropTypes.oneOf([1, 2, 3]).isRequired,
   children: PropTypes.node,
 };

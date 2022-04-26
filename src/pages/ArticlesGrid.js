@@ -17,7 +17,7 @@ function ArticlesGrid() {
   if (error) return `Error! ${error.message}`;
 
   return (
-    <Grid width="100%" gridTemplateColumns='1fr 1fr 1fr' bg='white'>
+    <Grid width='100%' gridTemplateColumns='1fr 1fr 1fr' bg='white'>
       {data.allArticles.edges.map((article) => (
         <Card key={article.node._meta.id}>
           <Link to={article.node._meta.uid}>
@@ -25,28 +25,28 @@ function ArticlesGrid() {
               src={article.node.feature_image.url}
               alt={article.node.feature_image.alt}
             />
-              <Heading level={1} fontWeight='normal'>
-                {article.node.title[0].text}
-              </Heading>
-              <Heading level={3}>
-                Published on{' '}
-                {format(new Date(article.node.published_at), 'MMM dd, yyyy')}
-              </Heading>
-              <Box>
-                {article.node.body
-                  .find((index) => index.type === 'inline_text')
-                  ?.primary?.description?.map(({ text }, index) => {
-                    if (index === 0) {
-                      return (
-                        <Text variant='p' mt='10px' mb='10px' key={index}>
-                          {text.substring(0, 190)}...
-                          <br />
-                        </Text>
-                      );
-                    }
-                    return '';
-                  })}
-              </Box>
+            <Heading level={1} fontWeight='normal'>
+              {article.node.title[0].text}
+            </Heading>
+            <Heading level={3}>
+              Published on{' '}
+              {format(new Date(article.node.published_at), 'MMM dd, yyyy')}
+            </Heading>
+            <Box>
+              {article.node.body
+                .find((index) => index.type === 'inline_text')
+                ?.primary?.description?.map(({ text }, index) => {
+                  if (index === 0) {
+                    return (
+                      <Text variant='p' mt='10px' mb='10px' key={index}>
+                        {text.substring(0, 190)}...
+                        <br />
+                      </Text>
+                    );
+                  }
+                  return '';
+                })}
+            </Box>
           </Link>
         </Card>
       ))}

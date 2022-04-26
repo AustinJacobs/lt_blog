@@ -10,11 +10,6 @@ const colors = {
   lightBlue: '#cee8f7',
 };
 
-// const breakpoints = {
-//   small: '850px',
-//   medium: '1400px',
-// };
-
 const shadows = [
   '3px 3px 10px 0 rgba(0, 0, 0, 0.2)',
   '10px 10px 4px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)',
@@ -22,11 +17,11 @@ const shadows = [
 
 const space = [
   0, 4, 8, 16, 36, 64, 128, 256, 512
-]
+];
 
 const fontSizes = [
   16, 18, 20, 24, 32, 48, 64
-]
+];
 
 const breakpoints = ['890px', '1400px'];
 
