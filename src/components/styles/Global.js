@@ -9,11 +9,22 @@ const GlobalStyles = createGlobalStyle`
     font-family: filson-pro, sans-serif;
   }
 
-  img {
-    width: 100%;
+  h3 {
+    font-size: 1.5em;
     margin: 0;
-    padding: 0;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  li::before {
+    content: '•';
+    color: #B71A04;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em
   }
 `;
 
-export default GlobalStyles
+export default GlobalStyles;

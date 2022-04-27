@@ -46,10 +46,13 @@ const Card = styled.div`
   }
 `;
 
+const VerticalLine = styled.div`
+  ${compose(color, space, border, typography, layout, grid)}
+`;
+
 const LogoImage = styled.img`
   ${compose(color, space, border, typography, layout, grid)}
-  max-width: 250px;
-  align-self: center;
+  max-width: 75px;
   justify-self: center;
 `;
 
@@ -65,62 +68,95 @@ function ArticlesGrid() {
   if (error) return `Error! ${error.message}`;
 
   return (
-    <Grid width='100%' bg='white' gridGap={5} px={5} py={5}>
-      <LogoImage src={logo} alt='logo' />
-      {data.allArticles.edges.map((article) => (
-        <motion.div
-          whileHover={{ y: -3 }}
-          whileTap={{ y: -3 }}
-          style={{ background: 'transparent', border: 'none' }}>
-          <Card
-            width='100%'
-            height='100%'
-            bg='white.50'
-            borderWidth={1}
-            borderStyle='solid'
-            borderColor='blue.100'
-            borderRadius={3}
+    <React.Fragment>
+      <Flex
+        mt={5}
+        alignItems='center'
+        justifyContent='center'
+        flexDirection='row'>
+        <a href='/'>
+          <LogoImage
+            src={logo}
+            alt='logo'
+            gridRow='1/2'
+            gridColumn='1'
+            mr={4}
+          />
+        </a>
+        <VerticalLine
+          gridRow='1'
+          gridColumn='2/3'
+          borderLeft='2px solid'
+          borderColor='black'
+          height='50px'
+        />
+        <Text fontSize={4.25} ml={4} gridRow='1' gridColumn='3/4' variant='p'>
+          Leisure Time Inc.
+        </Text>
+      </Flex>
+      <Grid
+        gridTemplateColumns='1fr 1fr 1fr'
+        width='100%'
+        bg='white'
+        gridGap={5}
+        px={['1em', null, null, '5em', null]}
+        py={5}>
+        {data.allArticles.edges.map((article) => (
+          <motion.div
+            whileHover={{ y: -3 }}
+            whileTap={{ y: -3 }}
+            style={{ background: 'transparent', border: 'none' }}
             key={article.node._meta.id}>
-            <Link to={article.node._meta.uid}>
-              <img
-                src={article.node.feature_image.url}
-                alt={article.node.feature_image.alt}
-              />
-              <Heading
-                as='h1'
-                fontWeight='normal'
-                fontSize={['md', null, null, 'lg', null]}
-                m='0'>
-                {article.node.title[0].text}
-              </Heading>
-              <Heading
-                as='h3'
-                m='0'
-                fontWeight='normal'
-                fontSize={['sm', null, null, 'md', null]}>
-                Published on{' '}
-                {format(new Date(article.node.published_at), 'MMM dd, yyyy')}
-              </Heading>
-              <Box>
-                {article.node.body
-                  .find((index) => index.type === 'inline_text')
-                  ?.primary?.description?.map(({ text }, index) => {
-                    if (index === 0) {
-                      return (
-                        <Text variant='p' mt='10px' mb='10px' key={index}>
-                          {text.substring(0, 190)}...
-                          <br />
-                        </Text>
-                      );
-                    }
-                    return '';
-                  })}
-              </Box>
-            </Link>
-          </Card>
-        </motion.div>
-      ))}
-    </Grid>
+            <Card
+              width='100%'
+              height='100%'
+              bg='white'
+              borderWidth={1}
+              borderStyle='solid'
+              borderColor='blue.100'
+              borderRadius={3}>
+              <Link to={article.node._meta.uid}>
+                <img
+                  src={article.node.feature_image.url}
+                  alt={article.node.feature_image.alt}
+                />
+                <Heading
+                  as='h1'
+                  fontWeight='normal'
+                  fontSize={['lg', null, null, 'xl', null]}
+                  m={0}
+                  mb={3}>
+                  {article.node.title[0].text}
+                </Heading>
+                <Heading
+                  as='h3'
+                  m='0'
+                  fontWeight='normal'
+                  fontSize={['sm', null, null, 'md', null]}>
+                  Published on{' '}
+                  {format(new Date(article.node.published_at), 'MMM dd, yyyy')}
+                </Heading>
+                <Box>
+                  {article.node.body
+                    .find((index) => index.type === 'inline_text')
+                    ?.primary?.description?.map(({ text }, index) => {
+                      if (index === 0) {
+                        return (
+                          <Text as='p' mt='10px' mb='10px' key={index}>
+                            {text.substring(0, 190)}...
+                            <br />
+                          </Text>
+                        );
+                      }
+                      return '';
+                    })}
+                </Box>
+              </Link>
+            </Card>
+          </motion.div>
+        ))}
+      </Grid>
+    </React.Fragment>
   );
 }
 

@@ -1,36 +1,17 @@
 import styled from 'styled-components';
-import { variant, space, color, typography, layout } from 'styled-system';
-import PropTypes from 'prop-types';
-import theme from '@leisuretimeinc/lti-lib/dist/theme';
-
-const variants = {
-  p: {
-    fontSize: theme.fontSizes[0],
-  },
-  span: {
-    fontSize: theme.fontSizes[4],
-    color: theme.colors.red[600],
-  },
-};
-
-const Text = styled.p(
-  {
-    margin: 0,
-  },
-  variant({ variants }),
-  color, 
-  typography,
+import {
+  compose,
+  color,
+  shadow,
   space,
-  layout
-)
+  border,
+  typography,
+  layout,
+} from 'styled-system';
 
-Text.propTypes = {
-  variant: PropTypes.oneOf(Object.keys(variants)),
-  children: PropTypes.node,
-};
+// Maybe I need to change the p to something else...?
+const Text = styled.p`
+  ${compose(color, shadow, space, border, typography, layout)}
+`;
 
-Text.defaultProps = {
-  variant: 'p',
-};
-
-export default Text
+export default Text;

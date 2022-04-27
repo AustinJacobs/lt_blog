@@ -4,7 +4,7 @@ import { GET_DETAILS } from '../GraphQL/Queries';
 import { format } from 'date-fns';
 import { RichText } from 'prismic-reactjs';
 import { useHistory } from 'react-router-dom';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { htmlSerializer } from '../prismic-config';
 import Heading from '../components/styles/Heading';
 import Text from '../components/styles/Text';
@@ -22,12 +22,12 @@ import {
 } from 'styled-system';
 import { motion } from 'framer-motion';
 import Ring from 'react-cssfx-loading/lib/Ring';
+import logo from '../images/lti-logo.png';
 
 const ArticleDetailBodyContainer = styled.div`
   ${compose(color, space, border, typography, layout, grid)}
   background-color: ${({ theme }) => theme.colors.white};
   margin: 0 auto;
-  padding: 1em 6em 1em 6em;
 
   a {
     text-decoration: underline ${({ theme }) => theme.colors.lightBlue};
@@ -50,12 +50,21 @@ const ArticleDetailBodyContainer = styled.div`
 
 const Button = styled.button`
   ${compose(color, space, border, typography, layout, grid)}
-  background-color: ${({ theme }) => theme.colors.red[600]};
-  width: 100px;
-  height: 40px;
-  border: none;
-  border-radius: 5px;
-  color: white;
+`;
+
+const VerticalLine = styled.div`
+  ${compose(color, space, border, typography, layout, grid)}
+`;
+
+const LogoImage = styled.img`
+  ${compose(color, space, border, typography, layout, grid)}
+  max-width: 75px;
+  justify-self: center;
+`;
+
+const ArticleImage = styled.img`
+  ${compose(color, space, border, typography, layout, grid)}
+  width: 100%;
 `;
 
 function ArticleDetail() {
@@ -82,46 +91,86 @@ function ArticleDetail() {
   console.log(data.article.body);
 
   return (
-    <Box>
-      <img
-        src={data.article.feature_image.url}
-        alt={data.article.feature_image.alt}
-      />
-      <ArticleDetailBodyContainer>
-        <Heading
-          level={1}
-          fontWeight='normal'
-          fontSize={['2xl', null, null, '4xl', null]}
-          m='0'>
-          {data.article.title[0].text}
-        </Heading>
-        <Text variant='span'>
-          Published on{' '}
-          {format(new Date(data.article.published_at), 'MMM dd, yyyy')}
+    <React.Fragment>
+      <Flex
+        mt={5}
+        alignItems='center'
+        justifyContent='center'
+        flexDirection='row'>
+        <a href='/'>
+          <LogoImage
+            src={logo}
+            alt='logo'
+            gridRow='1/2'
+            gridColumn='1'
+            mr={4}
+          />
+        </a>
+        <VerticalLine
+          gridRow='1'
+          gridColumn='2/3'
+          borderLeft='2px solid'
+          borderColor='black'
+          height='50px'
+        />
+        <Text fontSize={4.25} ml={4} gridRow='1' gridColumn='3/4' variant='p'>
+          Leisure Time Inc.
         </Text>
-        <Box>
-          {data.article.body
-            .filter((index) => index.type === 'inline_text')
-            .map((content, index) => {
-              return (
-                <RichText
-                  key={index}
-                  render={content.primary.description}
-                  htmlSerializer={htmlSerializer}
-                />
-              );
-            })}
-        </Box>
-        <motion.button
-          whileHover={{ y: -2 }}
-          whileTap={{ y: -2 }}
-          style={{ background: 'transparent', border: 'none' }}>
-          <Button fontSize={'md'} onClick={() => history.goBack()}>
-            Back
-          </Button>
-        </motion.button>
-      </ArticleDetailBodyContainer>
-    </Box>
+      </Flex>
+      <Box>
+        <ArticleImage
+          p={0}
+          m={0}
+          mt={5}
+          src={data.article.feature_image.url}
+          alt={data.article.feature_image.alt}
+        />
+        <ArticleDetailBodyContainer px={['2em', null, null, '6em', null]}>
+          <Heading
+            level={1}
+            fontWeight='normal'
+            fontSize={['3xl', null, null, '5xl', null]}
+            m='0'
+            mt={4.5}>
+            {data.article.title[0].text}
+          </Heading>
+          <Text color='red.600' mt={0} as='p'>
+            Published on{' '}
+            {format(new Date(data.article.published_at), 'MMM dd, yyyy')}
+          </Text>
+          <Box>
+            {data.article.body
+              .filter((index) => index.type === 'inline_text')
+              .map((content, index) => {
+                return (
+                  <RichText
+                    key={index}
+                    render={content.primary.description}
+                    htmlSerializer={htmlSerializer}
+                  />
+                );
+              })}
+          </Box>
+          <motion.button
+            whileHover={{ y: -2 }}
+            whileTap={{ y: -2 }}
+            style={{ background: 'transparent', border: 'none', padding: '0' }}>
+            <Button
+              width='100px'
+              height='40px'
+              border='none'
+              borderRadius='5px'
+              bg='red.600'
+              color='white'
+              fontSize={'md'}
+              onClick={() => history.goBack()}
+              mb={5}>
+              Back
+            </Button>
+          </motion.button>
+        </ArticleDetailBodyContainer>
+      </Box>
+    </React.Fragment>
   );
 }
 
