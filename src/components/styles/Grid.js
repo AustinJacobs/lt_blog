@@ -12,12 +12,13 @@ import {
 const Grid = styled.div`
   ${compose(color, space, border, typography, layout, grid)}
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
 
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints[1]}) {
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints[3]}) {
     grid-template-columns: 1fr 1fr;
   }
 
-  @media only screen and (max-width: ${({ theme }) => theme.breakpoints[0]}) {
+  @media only screen and (max-width: ${({ theme }) => theme.breakpoints[2]}) {
     grid-template-columns: 1fr;
   }
 `;

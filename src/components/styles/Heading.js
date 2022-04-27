@@ -1,43 +1,16 @@
 import styled from 'styled-components';
-import { variant, space, typography } from 'styled-system';
-import PropTypes from 'prop-types';
-import propTypes from '@styled-system/prop-types';
-import { theme } from '../../theme';
-
-const variants = {
-  1: {
-    fontSize: theme.fontSizes[5],
-  },
-  2: {
-    fontSize: theme.fontSizes[4],
-  },
-  3: {
-    fontSize: theme.fontSizes[3],
-  },
-};
-
-const HeadingBase = ({ level, as: Component = `h${level}`, ...props }) => (
-  <Component {...props} />
-);
-
-const Heading = styled(HeadingBase)(
-  {
-    margin: 0,
-    padding: 0,
-  },
-  variant({
-    variants,
-    prop: 'level',
-  }),
+import {
+  compose,
+  color,
+  shadow,
   space,
-  typography
-);
+  border,
+  typography,
+  layout,
+} from 'styled-system';
 
-Heading.propTypes = {
-  ...propTypes.space,
-  ...propTypes.typography,
-  level: PropTypes.oneOf([1, 2, 3]).isRequired,
-  children: PropTypes.node,
-};
+const Heading = styled.h6`
+  ${compose(color, shadow, space, border, typography, layout)}
+`;
 
 export default Heading;
