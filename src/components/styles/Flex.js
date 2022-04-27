@@ -1,8 +1,16 @@
 import styled from 'styled-components';
-import { flexbox } from 'styled-system';
+import {
+  compose,
+  color,
+  space,
+  border,
+  typography,
+  layout,
+  flexbox,
+} from 'styled-system';
 
 const Flex = styled.div`
-  ${flexbox}
+  ${compose(color, space, border, typography, layout, flexbox)}
   display: flex;
 `;
 

@@ -10,6 +10,7 @@ import Heading from '../components/styles/Heading';
 import Text from '../components/styles/Text';
 import Box from '../components/styles/Box';
 import styled from 'styled-components';
+import Flex from '../components/styles/Flex';
 import {
   compose,
   color,
@@ -19,16 +20,8 @@ import {
   layout,
   grid,
 } from 'styled-system';
-
-const Loader = styled.div`
-  ${compose(color, space, border, typography, layout, grid)}
-  width: 100vw;
-  height: 100vh;
-  display: grid;
-  justify-items: center;
-  align-items: center;
-  color: ${({ theme }) => theme.colors.white};
-`;
+import { motion } from 'framer-motion';
+import Ring from 'react-cssfx-loading/lib/Ring';
 
 const ArticleDetailBodyContainer = styled.div`
   ${compose(color, space, border, typography, layout, grid)}
@@ -78,10 +71,15 @@ function ArticleDetail() {
 
   const { loading, error, data } = useQuery(GET_DETAILS(articleUid));
 
-  if (loading) return <Loader gridTemplateColumns="1fr" fontSize={6} bg="red.600">Loading...</Loader>;
+  if (loading)
+    return (
+      <Flex justifyContent='center' mt='50vh'>
+        <Ring color='#B71A04' width='80px' height='80px' />
+      </Flex>
+    );
   if (error) return `Error! ${error.message}`;
 
-  console.log(data.article.body)
+  console.log(data.article.body);
 
   return (
     <Box>
@@ -94,7 +92,7 @@ function ArticleDetail() {
           level={1}
           fontWeight='normal'
           fontSize={['2xl', null, null, '4xl', null]}
-          m="0">
+          m='0'>
           {data.article.title[0].text}
         </Heading>
         <Text variant='span'>
@@ -114,9 +112,14 @@ function ArticleDetail() {
               );
             })}
         </Box>
-        <Button fontSize={'md'} onClick={() => history.goBack()}>
-          Back
-        </Button>
+        <motion.button
+          whileHover={{ y: -2 }}
+          whileTap={{ y: -2 }}
+          style={{ background: 'transparent', border: 'none' }}>
+          <Button fontSize={'md'} onClick={() => history.goBack()}>
+            Back
+          </Button>
+        </motion.button>
       </ArticleDetailBodyContainer>
     </Box>
   );
