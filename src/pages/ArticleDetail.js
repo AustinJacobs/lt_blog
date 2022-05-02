@@ -50,6 +50,7 @@ const ArticleDetailBodyContainer = styled.div`
 
 const Button = styled.button`
   ${compose(color, space, border, typography, layout, grid)}
+  cursor: pointer;
 `;
 
 const VerticalLine = styled.div`
